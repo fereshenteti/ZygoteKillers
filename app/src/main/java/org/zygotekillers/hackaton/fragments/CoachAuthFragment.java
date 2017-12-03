@@ -33,6 +33,7 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 import org.zygotekillers.hackaton.CoachsHelper;
 import org.zygotekillers.hackaton.R;
 import org.zygotekillers.hackaton.models.Coach;
+import org.zygotekillers.hackaton.models.Competition;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -192,7 +193,7 @@ public class CoachAuthFragment extends Fragment implements ValueEventListener,Vi
     public void onClick(View view) {
         for (Coach c : CoachsHelper.getInstance(getContext()).getCoachs()){
             if (c.getUsername().equals(cin.getText().toString())){
-                Toast.makeText(getContext(), c.getUsername()+" / " +cin.getText(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), c.getComp().getCompName(), Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -205,6 +206,7 @@ public class CoachAuthFragment extends Fragment implements ValueEventListener,Vi
         for (DataSnapshot keys : dataSnapshot.child("joint").getChildren()) {
             Coach c = new Coach();
             c.setUsername(keys.getKey());
+            c.setComp(new Competition(keys.child("competition").getValue().toString()));
             Toast.makeText(getContext(), c.getUsername(), Toast.LENGTH_SHORT).show();
             coaches.add(c);
         }

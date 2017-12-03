@@ -14,6 +14,10 @@ public class Competition implements Serializable {
     private String compName;
 
 
+    public Competition (String compName){
+        this.compName = compName;
+    }
+
     public Competition(ArrayList<Coach> coaches, ArrayList<Team> teams, String compName) {
         this.coaches = coaches;
         this.teams = teams;

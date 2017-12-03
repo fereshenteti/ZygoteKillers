@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class Coach implements Serializable {
 
     private String username, domaine, nom, prenom;
+    private Competition comp;
 
     public Coach() {
 
@@ -19,6 +20,14 @@ public class Coach implements Serializable {
         this.domaine = domaine;
         this.nom = nom;
         this.prenom = prenom;
+    }
+
+    public Competition getComp() {
+        return comp;
+    }
+
+    public void setComp(Competition comp) {
+        this.comp = comp;
     }
 
     public String getUsername() {
