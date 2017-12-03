@@ -1,6 +1,7 @@
 package org.zygotekillers.hackaton.activities;
 
 import android.graphics.Point;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -32,14 +33,14 @@ public class ChooseScreenActivity extends AppCompatActivity {
         coachLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createOpenAnimation();
+                createOpenAnimation(true);
             }
         });
 
     }
 
     //start creating open animations
-    private void createOpenAnimation() {
+    private void createOpenAnimation(final boolean isCoach) {
         Point size=new Point();
         getWindowManager().getDefaultDisplay().getSize(size);
         up=new TranslateAnimation(0,0,0,-size.y/2);
@@ -59,7 +60,10 @@ public class ChooseScreenActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 findViewById(R.id.choose_layout).setVisibility(View.GONE);
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame,new CoachAuthFragment()).commit();
+                Fragment fragment=null;
+                if (isCoach)
+                    fragment=new CoachAuthFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame,fragment).commit();
 
             }
 
