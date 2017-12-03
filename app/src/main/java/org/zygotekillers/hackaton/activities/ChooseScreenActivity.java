@@ -16,6 +16,7 @@ public class ChooseScreenActivity extends AppCompatActivity {
 
     private RelativeLayout partLayout,coachLayout;
     private Animation up,down;
+    private boolean animated;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,8 @@ public class ChooseScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_choose_screen);
         getSupportActionBar().hide();
 
+        //init
+        animated=false;
         //init views
         initViews();
 
@@ -47,8 +50,6 @@ public class ChooseScreenActivity extends AppCompatActivity {
         down=new TranslateAnimation(0,0,0,size.y/2);
         up.setDuration(700);
         down.setDuration(700);
-        down.setFillAfter(true);
-        up.setFillAfter(true);
         partLayout.startAnimation(up);
         coachLayout.startAnimation(down);
         up.setAnimationListener(new Animation.AnimationListener() {
@@ -61,8 +62,10 @@ public class ChooseScreenActivity extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 findViewById(R.id.choose_layout).setVisibility(View.GONE);
                 Fragment fragment=null;
+                animated=true;
                 if (isCoach)
                     fragment=new CoachAuthFragment();
+                findViewById(R.id.main_frame).setVisibility(View.VISIBLE);
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_frame,fragment).commit();
 
             }
@@ -80,5 +83,16 @@ public class ChooseScreenActivity extends AppCompatActivity {
     private void initViews() {
         partLayout= (RelativeLayout) findViewById(R.id.participant_layout);
         coachLayout= (RelativeLayout) findViewById(R.id.coach_layout);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!animated)
+            super.onBackPressed();
+        else {
+            findViewById(R.id.choose_layout).setVisibility(View.VISIBLE);
+            findViewById(R.id.main_frame).setVisibility(View.GONE);
+            animated=false;
+        }
     }
 }
