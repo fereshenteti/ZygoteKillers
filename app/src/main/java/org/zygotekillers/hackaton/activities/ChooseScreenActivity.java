@@ -33,7 +33,6 @@ public class ChooseScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 createOpenAnimation();
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame,new CoachAuthFragment()).commit();
             }
         });
 
@@ -60,6 +59,7 @@ public class ChooseScreenActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 findViewById(R.id.choose_layout).setVisibility(View.GONE);
+                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame,new CoachAuthFragment()).commit();
 
             }
 
