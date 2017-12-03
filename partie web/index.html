@@ -13,18 +13,6 @@
 
 <body>
     <div class="image-container set-full-height" style="background-image: url('backgroudImage.jpg')">
-	    <!--   Creative Tim Branding   -->
-	    <!--<a href="http://creative-tim.com" target="_blank">
-	         <div class="logo-container">
-	            <div class="logo">
-	                <img src="http://demos.creative-tim.com/material-bootstrap-wizard/assets/img/new_logo.png">
-	            </div>
-	            <div class="brand">
-	                Creative Tim
-	            </div>
-	        </div>
-	    </a> -->
-
 		<!--  Made With Material Kit  -->
 		<a href="http://demos.creative-tim.com/material-kit/index.html?ref=material-bootstrap-wizard" class="made-with-mk" target="_blank">
 			<div class="brand">CM</div>
@@ -57,6 +45,7 @@
 
 		                        <div class="tab-content">
 		                            <div class="tab-pane" id="details">
+										<form>
 		                            	<div class="row">
 			                            	<div class="col-sm-12">
 			                                	<h4 class="info-text"> Your competition name</h4>
@@ -68,7 +57,7 @@
 													</span>
 													<div class="form-group label-floating">
 			                                          	<label class="control-label">The competition name</label>
-			                                          	<input id="competitionName" type="text" class="form-control">
+			                                          	<input id="competitionName" required type="text" class="form-control">
 			                                        </div>
 												</div>
 		                                	</div>
@@ -84,7 +73,7 @@
 											</div>
 											<div class="clearfix"></div>
 										</div>
-								
+										</form>
 		                            </div>
 		                            <div class="tab-pane" id="captain">
 		                                <h4 class="info-text"> Add one coach of your event </h4>
@@ -257,46 +246,60 @@
 		   
 		   event.onclick = function writeCompetition() {
 				competitionName = c1.value;
-			    firebase.database().ref('/competitions/'+competitionName).set({
+				firebase.database().ref('/competitions/'+competitionName).set({
 				coachs: true
-			  });
-			  sessionStorage.setItem("competitionName",c1.value);
-			  document.getElementById("competitionName").value = "";
+				});
+				sessionStorage.setItem("competitionName",c1.value);
+				document.getElementById("competitionName").value = "";
 			}
 		   
-		   oA.onclick = function writeTeam() {
-				nomCoach = c2.value;
-				prenomCoach = c3.value;
-				domaineCoach = c4.value;
-				mailCoach = c8.value;
-			    firebase.database().ref('/competitions/'+sessionStorage.getItem("competitionName")+'/coachs/'+mailCoach).set({
-				domaine: domaineCoach,
-				nom: nomCoach,
-				prenom : prenomCoach
-			  });
-			    firebase.database().ref('/joint/'+mailCoach).set({
-				competition: sessionStorage.getItem("competitionName")
-			  });
-			  document.getElementById("mailCoach").value = "";
-			  document.getElementById("nomCoach").value = "";
-			  document.getElementById("prenomCoach").value = "";
-			  alert("Coach ajouté");
+		   oA.onclick = function writeCoach() {
+				if(sessionStorage.getItem("competitionName") != null)
+				{
+					nomCoach = c2.value;
+					prenomCoach = c3.value;
+					domaineCoach = c4.value;
+					mailCoach = c8.value;
+						firebase.database().ref('/competitions/'+sessionStorage.getItem("competitionName")+'/coachs/'+mailCoach).set({
+						domaine: domaineCoach,
+						nom: nomCoach,
+						prenom : prenomCoach
+					  });
+						firebase.database().ref('/joint/'+mailCoach).set({
+						competition: sessionStorage.getItem("competitionName")
+					  });
+					  document.getElementById("mailCoach").value = "";
+					  document.getElementById("nomCoach").value = "";
+					  document.getElementById("prenomCoach").value = "";
+					  alert("Coach ajouté");
+				}
+				else
+				{
+					alert("Vous n'avez pas d'évenement auquel ajouter d'équipes");
+				}
 			}
 			
 			addTeam.onclick = function writeTeam() {
-				competitionName = sessionStorage.getItem("competitionName");
-				teamName = c5.value;
-				numSalle = c6.value;
-				numTable = c7.value;
-			    firebase.database().ref('/competitions/'+sessionStorage.getItem("competitionName")+'/teams/'+teamName).set({
-				nom: teamName,
-				salle: numSalle,
-				table : numTable
-			  });
-			  document.getElementById("teamName").value = "";
-			  document.getElementById("numSalle").value = "";
-			  document.getElementById("numTable").value = "";
-			  alert("Team ajouté");
+				if(sessionStorage.getItem("competitionName") != null)
+				{
+					competitionName = sessionStorage.getItem("competitionName");
+					teamName = c5.value;
+					numSalle = c6.value;
+					numTable = c7.value;
+					firebase.database().ref('/competitions/'+sessionStorage.getItem("competitionName")+'/teams/'+teamName).set({
+					nom: teamName,
+					salle: numSalle,
+					table : numTable
+				  });
+				  document.getElementById("teamName").value = "";
+				  document.getElementById("numSalle").value = "";
+				  document.getElementById("numTable").value = "";
+				  alert("Team ajouté");
+				}
+				else
+				{
+					alert("Vous n'avez pas d'évenement auquel ajouter d'équipes");
+				}
 			}
 		}
 		window.onload = init;
