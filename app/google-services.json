@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "765683679932",
+    "firebase_url": "https://coachme-ba339.firebaseio.com",
+    "project_id": "coachme-ba339",
+    "storage_bucket": "coachme-ba339.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:765683679932:android:b781fadf09fe0c9b",
+        "android_client_info": {
+          "package_name": "org.zygotekillers.hackaton"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "765683679932-hinl5ljt77c0pf63pushtpij39og2mmb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.zygotekillers.hackaton",
+            "certificate_hash": "89ccc36552497fdb235d1f177890617f371519c7"
+          }
+        },
+        {
+          "client_id": "765683679932-lu4rl812qqalq77arot7mn0qmtivfk08.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfTqTWjhfytSiFnqOYkLb_toirapKyP8g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "765683679932-lu4rl812qqalq77arot7mn0qmtivfk08.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
