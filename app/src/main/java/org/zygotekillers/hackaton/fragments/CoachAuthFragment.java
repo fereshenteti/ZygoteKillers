@@ -148,7 +148,6 @@ public class CoachAuthFragment extends Fragment implements ValueEventListener,Vi
             Coach c = new Coach();
             c.setUsername(keys.getKey());
             c.setComp(new Competition(keys.child("competition").getValue().toString()));
-            Toast.makeText(getContext(), c.getUsername(), Toast.LENGTH_SHORT).show();
             coaches.add(c);
         }
 
