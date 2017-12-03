@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.inputmethodservice.Keyboard;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -22,7 +23,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,10 +40,12 @@ import org.zygotekillers.hackaton.R;
 import org.zygotekillers.hackaton.ScrollingActivity;
 import org.zygotekillers.hackaton.models.Coach;
 import org.zygotekillers.hackaton.models.Competition;
+import org.zygotekillers.hackaton.models.Team;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Executor;
 
 
 /**
@@ -58,13 +65,9 @@ public class CoachAuthFragment extends Fragment implements ValueEventListener,Vi
     private DatabaseReference mProfRef;
 
     private ArrayList<Coach> coaches;
+    private ArrayList<Team> teams;
 
     private FirebaseAuth mAuth;
-
-    private boolean isMawjoud = false;
-    private boolean isFergha = false;
-    private boolean hasChanged = false;
-    //private boolean completed = false;
 
     private String username;
 
@@ -76,6 +79,7 @@ public class CoachAuthFragment extends Fragment implements ValueEventListener,Vi
 
 
         coaches = new ArrayList<>();
+        teams = new ArrayList<>();
 
         // 1
         initFirebase();
@@ -91,6 +95,8 @@ public class CoachAuthFragment extends Fragment implements ValueEventListener,Vi
     private void initFirebase() {
 
         mRootRef = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
+        mAuth.signInAnonymously();
         mProfRef = mRootRef.child("competitions");
         mAuth = FirebaseAuth.getInstance();
         mRootRef.addValueEventListener(this);
@@ -113,6 +119,8 @@ public class CoachAuthFragment extends Fragment implements ValueEventListener,Vi
         loading.setVisibility(View.VISIBLE);
     }
 
+
+
     @Override
     public void onResume() {
         super.onResume();
@@ -130,14 +138,12 @@ public class CoachAuthFragment extends Fragment implements ValueEventListener,Vi
 
     @Override
     public void onClick(View view) {
-        for (Coach c : CoachsHelper.getInstance(getContext()).getCoachs()){
-            if (c.getUsername().equals(cin.getText().toString())){
-                CoachsHelper.getInstance(getContext()).setCoach(c.getUsername());
-                startActivity(new Intent(getActivity(), ScrollingActivity.class));
-                break;
-            }
-        }
+        //for (Coach c : CoachsHelper.getInstance(getContext()).getCoachs()){
+            /*if (c.getUsername().equals(cin.getText().toString())){
+                CoachsHelper.getInstance(getContext()).setCoach(c.getUsername());*/
 
+                startActivity(new Intent(getActivity(), ScrollingActivity.class).putExtra("title",cin.getText().toString()));
+            //}
     }
 
     @Override
@@ -151,8 +157,15 @@ public class CoachAuthFragment extends Fragment implements ValueEventListener,Vi
             coaches.add(c);
         }
 
+        for (DataSnapshot keys : dataSnapshot.child("competitions").child("DevFest").child("teams").getChildren()) {
+            Team t = new Team();
+            t.setTeamName(keys.getKey());
+            t.setTable(keys.child("table").getValue().toString());
+            teams.add(t);
+        }
+
         CoachsHelper.getInstance(getContext()).setCoaches(coaches);
-        Log.w(TAG, "MainActivity: liste enseignants : " + CoachsHelper.getInstance(getContext()).getCoachs().size());
+        CoachsHelper.getInstance(getContext()).setTeams(teams);
 
         continuer.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
         continuer.setEnabled(true);

@@ -10,6 +10,9 @@ public class Team  implements Serializable {
 
     private String teamName, salle, table;
 
+    public Team(){
+
+    }
 
     public Team(String teamName, String salle, String table) {
         this.teamName = teamName;

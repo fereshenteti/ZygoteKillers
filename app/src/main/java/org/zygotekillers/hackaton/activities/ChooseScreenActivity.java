@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 
 import org.zygotekillers.hackaton.R;
 import org.zygotekillers.hackaton.fragments.CoachAuthFragment;
+import org.zygotekillers.hackaton.fragments.ListCoachs;
 
 public class ChooseScreenActivity extends AppCompatActivity {
 
@@ -39,6 +40,12 @@ public class ChooseScreenActivity extends AppCompatActivity {
                 createOpenAnimation(true);
             }
         });
+        partLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createOpenAnimation(false);
+            }
+        });
 
     }
 
@@ -65,6 +72,8 @@ public class ChooseScreenActivity extends AppCompatActivity {
                 animated=true;
                 if (isCoach)
                     fragment=new CoachAuthFragment();
+                else
+                    fragment=new ListCoachs();
                 findViewById(R.id.main_frame).setVisibility(View.VISIBLE);
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_frame,fragment).commit();
 

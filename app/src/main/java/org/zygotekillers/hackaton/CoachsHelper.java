@@ -3,6 +3,7 @@ package org.zygotekillers.hackaton;
 import android.content.Context;
 
 import org.zygotekillers.hackaton.models.Coach;
+import org.zygotekillers.hackaton.models.Team;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +16,9 @@ public class CoachsHelper {
     private static volatile CoachsHelper mInstance = null;
 
     private ArrayList<Coach> coaches = null;
+    private ArrayList<Team> teams = null;
 
-    private String username;
+    private String username, teamName;
 
     public boolean isLoaded() {
         return isLoaded;
@@ -39,6 +41,7 @@ public class CoachsHelper {
     private CoachsHelper(Context context) {
         mContext = context;
         coaches = new ArrayList<>();
+        teams = new ArrayList<>();
     }
 
     public void setCoaches(List<Coach> _coaches) {
@@ -47,6 +50,16 @@ public class CoachsHelper {
         if (_coaches != null & _coaches.size() > 0) {
             for (Coach coach : _coaches) {
                 coaches.add(coach);
+            }
+        }
+    }
+
+    public void setTeams(List<Team> _team) {
+
+        coaches.clear();
+        if (_team != null & _team.size() > 0) {
+            for (Team team : _team) {
+                teams.add(team);
             }
         }
     }
@@ -61,12 +74,29 @@ public class CoachsHelper {
         return _coaches;
     }
 
+
+    public List<Team> getTeams() {
+        List<Team> _teams = new ArrayList<>();
+        if (teams != null & teams.size() > 0) {
+            for (Team team : teams) {
+                _teams.add(team);
+            }
+        }
+        return _teams;
+    }
+
     public String getCoach() {
         return username;
+    }
+    public String getTeam() {
+        return teamName;
     }
 
     public void setCoach(String username) {
         this.username = username;
+    }
+    public void setTeam(String teamName) {
+        this.teamName = teamName;
     }
 
 }
