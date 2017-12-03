@@ -191,10 +191,9 @@ public class CoachAuthFragment extends Fragment implements ValueEventListener,Vi
     @Override
     public void onClick(View view) {
         for (Coach c : CoachsHelper.getInstance(getContext()).getCoachs()){
-            if (c.getUsername().equals(cin.getText())){
-                Toast.makeText(getContext(), c.getUsername(), Toast.LENGTH_SHORT).show();
+            if (c.getUsername().equals(cin.getText().toString())){
+                Toast.makeText(getContext(), c.getUsername()+" / " +cin.getText(), Toast.LENGTH_SHORT).show();
             }
-            Toast.makeText(getContext(), c.getUsername(), Toast.LENGTH_SHORT).show();
         }
 
     }

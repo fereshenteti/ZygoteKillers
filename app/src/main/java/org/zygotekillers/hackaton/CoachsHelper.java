@@ -22,10 +22,6 @@ public class CoachsHelper {
         return isLoaded;
     }
 
-    public void setLoaded(boolean loaded) {
-        isLoaded = loaded;
-    }
-
     private boolean isLoaded;
 
     private Context mContext;
@@ -45,11 +41,11 @@ public class CoachsHelper {
         coaches = new ArrayList<>();
     }
 
-    public void setCoaches(List<Coach> coaches) {
+    public void setCoaches(List<Coach> _coaches) {
 
         coaches.clear();
-        if (coaches != null & coaches.size() > 0) {
-            for (Coach coach : coaches) {
+        if (_coaches != null & _coaches.size() > 0) {
+            for (Coach coach : _coaches) {
                 coaches.add(coach);
             }
         }
