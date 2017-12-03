@@ -12,9 +12,9 @@
 </head>
 
 <body>
-    <div class="image-container set-full-height" style="background-image: url('http://demos.creative-tim.com/material-bootstrap-wizard/assets/img/wizard-book.jpg')">
+    <div class="image-container set-full-height" style="background-image: url('backgroudImage.jpg')">
 	    <!--   Creative Tim Branding   -->
-	    <a href="http://creative-tim.com" target="_blank">
+	    <!--<a href="http://creative-tim.com" target="_blank">
 	         <div class="logo-container">
 	            <div class="logo">
 	                <img src="http://demos.creative-tim.com/material-bootstrap-wizard/assets/img/new_logo.png">
@@ -23,12 +23,12 @@
 	                Creative Tim
 	            </div>
 	        </div>
-	    </a>
+	    </a> -->
 
 		<!--  Made With Material Kit  -->
 		<a href="http://demos.creative-tim.com/material-kit/index.html?ref=material-bootstrap-wizard" class="made-with-mk" target="_blank">
-			<div class="brand">MK</div>
-			<div class="made-with">Made with <strong>Material Kit</strong></div>
+			<div class="brand">CM</div>
+			<div class="made-with"> <strong>Coach ME</strong></div>
 		</a>
 
 	    <!--   Big container   -->
@@ -49,9 +49,9 @@
 		                    	</div>
 								<div class="wizard-navigation">
 									<ul>
-			                            <li><a href="#details" data-toggle="tab">Account</a></li>
-			                            <li><a href="#captain" data-toggle="tab">Room Type</a></li>
-			                            <li><a href="#description" data-toggle="tab">Extra Details</a></li>
+			                            <li><a href="#details" data-toggle="tab">Competition </a></li>
+			                            <li><a href="#captain" data-toggle="tab">Coach</a></li>
+			                            <li><a href="#description" data-toggle="tab">Teams</a></li>
 			                        </ul>
 								</div>
 
@@ -64,7 +64,7 @@
 		                                	<div class="col-sm-12">
 												<div class="input-group">
 													<span class="input-group-addon">
-														<i class="material-icons">email</i>
+														<i class="material-icons">event</i>
 													</span>
 													<div class="form-group label-floating">
 			                                          	<label class="control-label">The competition name</label>
@@ -76,7 +76,7 @@
 										
 										<div class="wizard-footer">
 											<div class="pull-right">
-												<input type='button' class='btn btn-next btn-fill btn-danger btn-wd' name='next' value='Next' />
+												<input type='button' class='btn btn-next btn-fill btn-danger btn-wd' id="competition" name='next' value='Next' />
 												<input type='button' class='btn btn-finish btn-fill btn-danger btn-wd' name='finish' value='Finish' />
 											</div>
 											<div class="pull-left">
@@ -95,16 +95,25 @@
 														<i class="material-icons">email</i>
 													</span>
 													<div class="form-group label-floating">
-			                                          	<label class="control-label">Your Name</label>
+			                                          	<label class="control-label">Username</label>
+			                                          	<input id="mailCoach" type="text" class="form-control">
+			                                        </div>
+												</div>
+												<div class="input-group">
+													<span class="input-group-addon">
+														<i class="material-icons">accessibility</i>
+													</span>
+													<div class="form-group label-floating">
+			                                          	<label class="control-label">Name</label>
 			                                          	<input id="nomCoach" type="text" class="form-control">
 			                                        </div>
 												</div>
 												<div class="input-group">
 													<span class="input-group-addon">
-														<i class="material-icons">email</i>
+														<i class="material-icons">face</i>
 													</span>
 													<div class="form-group label-floating">
-			                                          	<label class="control-label">Your First Name</label>
+			                                          	<label class="control-label">First Name</label>
 			                                          	<input id="prenomCoach" type="text" class="form-control">
 			                                        </div>
 												</div>
@@ -166,7 +175,7 @@
 		                                	<div class="col-sm-12">
 												<div class="input-group">
 													<span class="input-group-addon">
-														<i class="material-icons">email</i>
+														<i class="material-icons">people</i>
 													</span>
 													<div class="form-group label-floating">
 			                                          	<label class="control-label">Team Name</label>
@@ -175,19 +184,19 @@
 												</div>
 												<div class="input-group">
 													<span class="input-group-addon">
-														<i class="material-icons">email</i>
+														<i class="material-icons">class</i>
 													</span>
 													<div class="form-group label-floating">
-			                                          	<label class="control-label">Numero de Salle</label>
+			                                          	<label class="control-label">Room number</label>
 			                                          	<input id="numSalle" type="text" class="form-control">
 			                                        </div>
 												</div>
 												<div class="input-group">
 													<span class="input-group-addon">
-														<i class="material-icons">email</i>
+														<i class="material-icons">polymer</i>
 													</span>
 													<div class="form-group label-floating">
-			                                          	<label class="control-label">Numero de table</label>
+			                                          	<label class="control-label">Table number</label>
 			                                          	<input id="numTable" type="text" class="form-control">
 			                                        </div>
 												</div>
@@ -212,11 +221,10 @@
 		</div> <!--  big container -->
 	    <div class="footer">
 	        <div class="container text-center">
-	             Made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com" target="_blank">Creative Tim</a>.
+	             Made by <i class="fa fa-heart heart"></i> by GDG Sfax</a>.
 	        </div>
 	    </div>
 	</div>
-	<!-- <script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script> -->
 	
 	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>
@@ -232,51 +240,55 @@
 	  };
 	  firebase.initializeApp(config);
 	  
-	  // Get a reference to the database service
 	  var database = firebase.database();
-		
-	  /*function writeCompetition(competitionName,nomCoach, prenomCoach, domaineCoach) {
-		  firebase.database().ref(competitionName+'/coachs/'+prenomCoach).set({
-			domaine: domaineCoach,
-			nom: nomCoach,
-			prenom : prenomCoach
-		  });
-		}*/
-		
-		
 		function init()
 		{
+		   var event = document.getElementById('competition');
 		   var oA = document.getElementById('addEvent');
 		   var c1 = document.getElementById('competitionName'); 
 		   var c2 = document.getElementById('nomCoach'); 
 		   var c3 = document.getElementById('prenomCoach'); 
+		   var c8 = document.getElementById('mailCoach'); 
 		   var c4 = document.getElementById('domaineCoach');
 		   
 		   var c5 = document.getElementById('teamName');
 		   var c6 = document.getElementById('numSalle');
 		   var c7 = document.getElementById('numTable');
 		   
-		   oA.onclick = function writeCompetition() {
+		   event.onclick = function writeCompetition() {
 				competitionName = c1.value;
+			    firebase.database().ref('/competitions/'+competitionName).set({
+				coachs: true
+			  });
+			  sessionStorage.setItem("competitionName",c1.value);
+			  document.getElementById("competitionName").value = "";
+			}
+		   
+		   oA.onclick = function writeTeam() {
 				nomCoach = c2.value;
 				prenomCoach = c3.value;
 				domaineCoach = c4.value;
-			    firebase.database().ref(competitionName+'/coachs/'+prenomCoach).set({
+				mailCoach = c8.value;
+			    firebase.database().ref('/competitions/'+sessionStorage.getItem("competitionName")+'/coachs/'+mailCoach).set({
 				domaine: domaineCoach,
 				nom: nomCoach,
 				prenom : prenomCoach
 			  });
-			  document.getElementById("competitionName").value = "";
+			    firebase.database().ref('/joint/'+mailCoach).set({
+				competition: sessionStorage.getItem("competitionName")
+			  });
+			  document.getElementById("mailCoach").value = "";
 			  document.getElementById("nomCoach").value = "";
 			  document.getElementById("prenomCoach").value = "";
+			  alert("Coach ajouté");
 			}
 			
 			addTeam.onclick = function writeTeam() {
-				competitionName = c1.value;
+				competitionName = sessionStorage.getItem("competitionName");
 				teamName = c5.value;
 				numSalle = c6.value;
 				numTable = c7.value;
-			    firebase.database().ref(competitionName+'/teams/'+teamName).set({
+			    firebase.database().ref('/competitions/'+sessionStorage.getItem("competitionName")+'/teams/'+teamName).set({
 				nom: teamName,
 				salle: numSalle,
 				table : numTable
@@ -284,6 +296,7 @@
 			  document.getElementById("teamName").value = "";
 			  document.getElementById("numSalle").value = "";
 			  document.getElementById("numTable").value = "";
+			  alert("Team ajouté");
 			}
 		}
 		window.onload = init;
